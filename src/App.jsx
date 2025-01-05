@@ -1,9 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/*import { useState } from 'react';*/
+import './App.css';
 
 function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Financial Dashboard</h1>
+      </header>
+      <nav className="App-nav">
+        {/* Navigation items ??? */}
+      </nav>
+      <main>
+        <section className="budget">
+          <h2>Budget Tracker</h2>
+          {/* Budget tracker content ??? */}
+        </section>
+        <section className="savings">
+          <h2>Savings Goals</h2>
+          {/* Savings goals ??? */}
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default App;
+
+
+/* function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -32,4 +56,4 @@ function App() {
   )
 }
 
-export default App
+export default App  */
