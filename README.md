@@ -29,13 +29,12 @@ The Finance Dashboard App is a web application designed to help users manage the
 
 ### Steps to Run Locally
 
-##1. Clone the repository:  
-   ```bash
+## Clone the repository:    
    git clone <repository-url>
    cd finance-dashboard
    
 ##Install dependencies:
-npm install
+   npm install
 
 ##Add Firebase configuration:
 
@@ -45,5 +44,5 @@ VITE_FIREBASE_AUTH_DOMAIN=<your-auth-domain>
 VITE_FIREBASE_PROJECT_ID=<your-project-id>
 
 ##Start the development server:
-npm run dev
+   npm run dev
 
