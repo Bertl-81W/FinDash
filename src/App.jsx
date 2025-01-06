@@ -17,7 +17,7 @@ function App() {
         </section>
         <section className="savings">
           <h2>Savings Goals</h2>
-          {/* Savings goals ??? */}
+          {/* Savings goals ???*/}
         </section>
       </main>
     </div>
