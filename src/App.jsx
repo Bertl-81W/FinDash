@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header'; 
-import Footer from './components/Footer'; 
+import Footer from './components/Footer';
+import SavingsGoals from './components/SavingsGoals' 
 import './styles/App.css';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
             <main>
                 <p>Welcome to My Finance Dashboard!</p>
             </main>
+            <SavingsGoals />
             <Footer />
         </div>
     );
