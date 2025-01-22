@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 import './Header.css'
 
 const Header = () => {
@@ -18,9 +19,9 @@ const Header = () => {
         <header className="header">
           <h1 className="header-title">Finance Dashboard</h1>
           <nav className="header-nav">
-            <a href="#" className="header-link">Dashboard</a>
-            <a href="#" className="header-link">Goals</a>
-            <a href="#" className="header-link">Reports</a>
+            <Link to="/" className="header-link">Dashboard</Link>
+            <Link to="/goals" className="header-link">Goals</Link>
+            <Link to="/reports" className="header-link">Reports</Link>
           </nav>
           <div className="header-user-section">            
 

@@ -6,6 +6,7 @@ const SavingsGoals = () => {
   
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+  const [goals, setGoals] = useState([]);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
