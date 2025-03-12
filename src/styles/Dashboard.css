@@ -1,0 +1,21 @@
+.dashboard {
+    padding: 20px;
+}
+
+.dashboard h2 {
+    /*color: #333;*/
+    color: red;
+}
+
+.dashboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}

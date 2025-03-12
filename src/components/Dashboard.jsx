@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import "../styles/dashboard.css"
 
 const Dashboard = () => {
     const [title, setTitle] = useState("");
@@ -14,6 +15,7 @@ const Dashboard = () => {
                 id: doc.id,
                 ...doc.data(),
             }));
+            console.log("Fetched Goals:", goalsData);
             setGoals(goalsData);
         } catch (error) {
             console.error("Error fetching savings goals:", error);
@@ -39,16 +41,19 @@ const Dashboard = () => {
           alert("Failed to add savings goal. Please try again.");
         }
       };
+
+      const calculateTotalSavings = () => {
+        return goals.reduce((total, goal) => total + goal.amount, 0).toFixed(2);
+    };
     
       useEffect(() => {
         fetchSavingsGoals();
       }, []);
     
       return (
-        <div>
-          <h1>Savings Dashboard</h1>
-          <div>
-            <h2>Add a Savings Goal</h2>
+        <div className="dashboard">
+          <h2>Savings Goals</h2>          
+            <div>            
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -69,17 +74,23 @@ const Dashboard = () => {
               />
               <button type="submit">Add Goal</button>
             </form>
-          </div>
+          </div> 
           <div>
             <h2>Your Savings Goals</h2>
             {goals.length > 0 ? (
+                <>
               <ul>
-                {goals.map((goal) => (
-                  <li key={goal.id}>
-                    <strong>{goal.title}:</strong> ${goal.amount.toFixed(2)}
-                  </li>
-                ))}
+              {goals.map((goal) => {
+                console.log("Rendering Goal:", goal); // Debug log
+                return (
+                    <li key={goal.id}>
+                        <strong>{goal.title}:</strong> ${goal.amount.toFixed(2)}
+                    </li>
+                );
+            })}
               </ul>
+              <h3> Total Savings: ${calculateTotalSavings()}</h3>
+              </>
             ) : (
               <p>No savings goals yet. Add one above!</p>
             )}
@@ -90,3 +101,11 @@ const Dashboard = () => {
     
     export default Dashboard;
 
+/*<ul>
+                {goals.map((goal) => (
+                    <li key={goal.id}>
+                        <strong>{goal.title}</strong>: ${goal.amount.toFixed(2)}
+                    </li>
+                ))}
+            </ul> 
+*/
