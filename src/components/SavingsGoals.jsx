@@ -1,25 +1,35 @@
 import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
+import { getAuth } from "firebase/auth"; 
 import { db } from "../firebase";
 
 const SavingsGoals = () => {
-  
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
-  const [goals, setGoals] = useState([]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !amount) {
       alert("Please fill out both the title and amount fields.");
       return;
-    }    
+    }
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    console.log("User ID:", user ? user.uid : "No user logged in"); // Debugging line
+
+    if (!user) {
+      alert("You must be logged in to save a savings goal.");
+      return;
+    }
+
     try {
-      await addDoc(collection(db, "savingsGoals"), {
+      await addDoc(collection(db, "users", user.uid, "savingsGoals"), {
         title,
-        amount: parseFloat(amount), 
+        amount: parseFloat(amount),
       });
-      alert("Savings goal added successfully!");      
+      alert("Savings goal added successfully!");
       setTitle("");
       setAmount("");
     } catch (error) {
@@ -36,7 +46,7 @@ const SavingsGoals = () => {
           <label style={{ display: "block", marginBottom: "5px" }}>
             Goal Title:
           </label>
-           <input
+          <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -85,23 +95,5 @@ const SavingsGoals = () => {
     </div>
   );
 };
-const handleAddGoal = async () => {
-    try {
-      await addDoc(collection(db, "savingsGoals"), {
-        title,
-        amount: parseFloat(amount),
-      });
-      alert("Savings goal added successfully!");
-      setTitle("");
-      setAmount("");
-      fetchSavingsGoals(); 
-    } catch (error) {
-      console.error("Error adding savings goal:", error);
-      alert("Failed to add savings goal. Please try again.");
-    }
-  };
-  
 
 export default SavingsGoals;
-
-
