@@ -2,12 +2,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyD1Jihf6gfR9m1A1VfWdy9PumblQ6BcT5Q",
+  authDomain: "gi-joe-tracker.firebaseapp.com",
+  projectId: "gi-joe-tracker",
+  storageBucket: "gi-joe-tracker.firebasestorage.app",
+  messagingSenderId: "653581820292",
+  appId: "1:653581820292:web:5adc980c1513350244fdd1"
 };
 
 const app = initializeApp(firebaseConfig);
