@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { getAuth } from "firebase/auth"; 
-import { db } from "../firebase";
+//import { getAuth } from "firebase/auth"; //
+import { db, auth } from "../firebase";
 
 const SavingsGoals = () => {
   const [title, setTitle] = useState("");
