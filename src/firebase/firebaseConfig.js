@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD1Jihf6gfR9m1A1VfWdy9PumblQ6BcT5Q",
+  apiKey: "",
   authDomain: "gi-joe-tracker.firebaseapp.com",
   projectId: "gi-joe-tracker",
   storageBucket: "gi-joe-tracker.firebasestorage.app",
