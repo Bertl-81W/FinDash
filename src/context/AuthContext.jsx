@@ -1,37 +1,32 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { app } from "../firebase";
+import { app } from "../firebase/firebaseConfig";
 
-// create the context
-const AuthContext = createContext();
 
-// provide Auth Context to the app
 export const AuthProvider = ({ children }) => {
-    const [ user, setUser ] = useState(null); // store the authenticated user
+    const [ user, setUser ] = useState(null); 
     const auth = getAuth(app);
+    const [loading, setLoading] = useState(true);
 
-    //listen foe authetification state changes
+    
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          setUser(currentUser);  
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          setUser(user);
+          setLoading(false);  
         });
 
-    // cleanup the lsitener on unmount
+    
     return () => unsubscribe();
-    }, [auth]);
+    }, []);
 
-    //logout function
-    const logout = async () => {
-        await signOut(auth);
-        setUser(null);
-    };
+    
+    const logout = () => signOut(auth);
 
     return (
         <AuthContext.Provider value={{ user, logout }}>
-           {children} 
+           {!loading && children} 
         </AuthContext.Provider>
     );
 };
 
-// hook to use AuthContext in components
 export const useAuth = () => useContext(AuthContext);
