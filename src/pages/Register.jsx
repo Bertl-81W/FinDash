@@ -15,7 +15,7 @@ export default function Register() {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard"); // Adjust route based on your app
+      navigate("..pages/dashboard"); 
     } catch (err) {
       setError(err.message);
     }
@@ -39,8 +39,8 @@ export default function Register() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign Up</button>
-        {error && <p>{error}</p>}
+        <button type="submit">Registar</button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
     </div>
   );
