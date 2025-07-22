@@ -23,7 +23,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="login-page">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
@@ -41,7 +41,7 @@ export default function Login() {
           required
         />
         <button type="submit">Log In</button>
-        {error && <p>{error}</p>}
+        {error && <p>{error}</p>} //maybe style later???
       </form>
     </div>
   );
