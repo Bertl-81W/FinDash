@@ -3,6 +3,8 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig"; 
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,8 +43,11 @@ export default function Login() {
           required
         />
         <button type="submit">Log In</button>
-        {error && <p>{error}</p>} //maybe style later???
+        {error && <p>{error}</p>} /*maybe style more later*/
       </form>
+
+      <p>Don't have an account? <Link to="/register">Register here</Link></p>
+
     </div>
   );
 }
