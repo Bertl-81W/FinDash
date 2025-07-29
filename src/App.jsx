@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard"; 
 import PrivateRoute from "./components/PrivateRoute";
 import AuthProvider from './context/AuthContext';
+import './styles/index.css';
 
 
 

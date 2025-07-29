@@ -3,17 +3,16 @@ import { auth } from "../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import JoeCard from '../components/JoeCard';
-
+import JoeCard from "../components/JoeCard";
 
 const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [joes, setJoes] = useState([
-    { id: 1, name: 'Conrad Hauser', codename: 'Duke', specialty: 'Leadership' },
-    { id: 2, name: 'Shana O\'Hara', codename: 'Scarlett', specialty: 'Counterintelligence' },
-    { id: 3, name: 'Snake Eyes', codename: 'Snake Eyes', specialty: 'Ninja/Commando' },
+    { id: 1, name: "Conrad Hauser", codename: "Duke", specialty: "Leadership" },
+    { id: 2, name: "Shana O'Hara", codename: "Scarlett", specialty: "Counterintelligence" },
+    { id: 3, name: "Snake Eyes", codename: "Snake Eyes", specialty: "Ninja/Commando" },
   ]);
 
   const handleLogout = async () => {
@@ -26,13 +25,25 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      <h1>GI Joe Tracker</h1>
-      <p>Logged in as: {currentUser?.email}</p>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="min-h-screen bg-oliveDrab p-6 font-stencil text-camoTan">
+      <div className="max-w-5xl mx-auto bg-armyGreen shadow-lg rounded-lg p-8 border-2 border-camoTan">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-4xl font-bold tracking-wider text-joeRed drop-shadow">
+            G.I. JOE TRACKER
+          </h1>
+          <h1 className="text-red-500">Test Tailwind</h1>
 
-       <h2>My Joes</h2>
-      <div className="joe-list">
+          <button
+            onClick={handleLogout}
+            className="mt-2 px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded shadow-md transition"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <h2 className="text-2xl font-semibold mb-4 border-b border-green-600 pb-1">My Joes</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {joes.map((joe) => (
           <JoeCard key={joe.id} joe={joe} />
         ))}

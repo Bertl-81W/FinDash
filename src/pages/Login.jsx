@@ -43,7 +43,7 @@ export default function Login() {
           required
         />
         <button type="submit">Log In</button>
-        {error && <p>{error}</p>} /*maybe style more later*/
+        {error && <p>{error}</p>} 
       </form>
 
       <p>Don't have an account? <Link to="/register">Register here</Link></p>
