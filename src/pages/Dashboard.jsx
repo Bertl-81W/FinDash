@@ -25,14 +25,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-purple-500 p-6 text-white">
+    <div className="min-h-screen bg-oliveDrab p-6 font-stencil text-camoTan">
       <div className="max-w-5xl mx-auto bg-armyGreen shadow-lg rounded-lg p-8 border-2 border-camoTan">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-4xl font-bold tracking-wider text-joeRed drop-shadow">
             G.I. JOE TRACKER
           </h1>
-          <h1 className="text-red-500">Test Tailwind</h1>
-
+          
           <button
             onClick={handleLogout}
             className="mt-2 px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded shadow-md transition"
