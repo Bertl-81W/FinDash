@@ -33,16 +33,23 @@ The Finance Dashboard App is a web application designed to help users manage the
    git clone <repository-url>
    cd finance-dashboard
    
-##Install dependencies:
+## Install dependencies:
    npm install
 
-##Add Firebase configuration:
+## Add Firebase configuration:
 
 Create a .env file in the project root and add your Firebase config:
 VITE_FIREBASE_API_KEY=<your-api-key>
 VITE_FIREBASE_AUTH_DOMAIN=<your-auth-domain>
 VITE_FIREBASE_PROJECT_ID=<your-project-id>
 
-##Start the development server:
+## Start the development server:
    npm run dev
+
+##  Install Tailwind
+
+Discovered that Tailwind CSS v4+ requires the @tailwindcss/vite plugin 
+when used with Vite instead of relying on PostCSS. Removed old PostCSS 
+config, installed the proper plugin, and updated vite.config.js accordingly.
+Now custom Tailwind styles (colors, fonts) render as expected.
 
