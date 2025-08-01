@@ -26,6 +26,9 @@ export default function Login() {
 
   return (
     <div className="login-page">
+      <div className="bg-oliveDrab text-camoTan p-4 font-stencil">
+  This should be olive with tan text in stencil font.
+</div>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input

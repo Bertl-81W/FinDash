@@ -25,12 +25,23 @@ const Dashboard = () => {
   };
 
   return (
+
+    <>
+    <div className="bg-armyGreen text-camoTan font-stencil">
+  Custom Olive and Tan
+</div>
+
+
+   
     <div className="min-h-screen bg-oliveDrab p-6 font-stencil text-camoTan">
       <div className="max-w-5xl mx-auto bg-armyGreen shadow-lg rounded-lg p-8 border-2 border-camoTan">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-4xl font-bold tracking-wider text-joeRed drop-shadow">
             G.I. JOE TRACKER
           </h1>
+          <div className="bg-blue-500 text-white p-4">
+  Tailwind default color test
+</div>
           
           <button
             onClick={handleLogout}
@@ -48,6 +59,7 @@ const Dashboard = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
