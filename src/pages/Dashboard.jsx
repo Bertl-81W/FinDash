@@ -27,9 +27,10 @@ const Dashboard = () => {
   return (
 
     <>
-    <div className="bg-armyGreen text-camoTan font-stencil">
-  Custom Olive and Tan
+    <div className="bg-armyGreen text-camoTan font-stencil p-4">
+  Should have a green background and tan text in stencil font.
 </div>
+
 
 
    
