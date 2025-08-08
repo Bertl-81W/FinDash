@@ -40,9 +40,9 @@ const Dashboard = () => {
           <h1 className="text-4xl font-bold tracking-wider text-joeRed drop-shadow">
             G.I. JOE TRACKER
           </h1>
-          <div className="bg-joeBlue text-white p-4">
-  Tailwind default color test
-</div>
+          <h1 className="text-red-500 text-3xl font-bold underline">
+  Tailwind is finally working!
+</h1>          
           
           <button
             onClick={handleLogout}
