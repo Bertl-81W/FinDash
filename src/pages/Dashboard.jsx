@@ -1,67 +1,43 @@
-import React, { useContext, useState } from "react";
-import { auth } from "../firebase/firebaseConfig";
+import React from "react";
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import JoeCard from "../components/JoeCard";
+import { auth } from "../firebase";
+import FigureGrid from "../components/FigureGrid";
 
-const Dashboard = () => {
-  const { currentUser } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const [joes, setJoes] = useState([
-    { id: 1, name: "Conrad Hauser", codename: "Duke", specialty: "Leadership" },
-    { id: 2, name: "Shana O'Hara", codename: "Scarlett", specialty: "Counterintelligence" },
-    { id: 3, name: "Snake Eyes", codename: "Snake Eyes", specialty: "Ninja/Commando" },
-  ]);
-
+export default function Dashboard({ user }) {
+  // Handle logout
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/");
     } catch (error) {
-      console.error("Logout failed:", error.message);
+      console.error("Error signing out:", error);
     }
   };
 
   return (
-
-    <>
-    <div className="bg-armyGreen text-camoTan font-stencil p-4">
-  Should have a green background and tan text in stencil font.
-</div>
-
-
-
-   
-    <div className="min-h-screen bg-oliveDrab p-6 font-stencil text-camoTan">
-      <div className="max-w-5xl mx-auto bg-armyGreen shadow-lg rounded-lg p-8 border-2 border-camoTan">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-4xl font-bold tracking-wider text-joeRed drop-shadow">
-            G.I. JOE TRACKER
-          </h1>
-          <h1 className="text-red-500 text-3xl font-bold underline">
-  Tailwind is finally working!
-</h1>          
-          
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+      {/* Navbar */}
+      <header className="flex justify-between items-center px-6 py-4 bg-gray-800 text-white shadow-md">
+        <h1 className="text-2xl font-bold">
+          GI Joe Collector Tracker
+        </h1>
+        <div className="flex items-center gap-4">
+          <span className="hidden sm:block">
+            Welcome, {user.displayName || user.email}
+          </span>
           <button
             onClick={handleLogout}
-            className="mt-2 px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded shadow-md transition"
+            className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-sm font-medium transition"
           >
-            Logout
+            Log Out
           </button>
         </div>
-      </div>
+      </header>
 
-      <h2 className="text-2xl font-semibold mb-4 border-b border-green-600 pb-1">My Joes</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {joes.map((joe) => (
-          <JoeCard key={joe.id} joe={joe} />
-        ))}
-      </div>
+      {/* Main content */}
+      <main className="p-6 max-w-7xl mx-auto">
+        {/* Figure Grid */}
+        <FigureGrid user={user} />
+      </main>
     </div>
-    </>
   );
-};
-
-export default Dashboard;
+}
