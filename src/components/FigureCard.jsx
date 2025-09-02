@@ -1,36 +1,25 @@
-import { useState } from "react";
-
 export default function FigureCard({ figure, owned, toggleOwned, showDetails }) {
   return (
-    <div
-      className={`relative rounded-2xl overflow-hidden shadow-md transition transform hover:scale-105 bg-white dark:bg-gray-800`}
-      onClick={() => toggleOwned(figure.id)}
+    <div 
+      onClick={() => showDetails(figure)}
+      className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer"
     >
-      <img
-        src={figure.image}
-        alt={figure.name}
+      <img 
+        src={figure.image} 
+        alt={figure.name} 
         className="w-full h-48 object-cover"
       />
-      {owned && (
-        <span className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-          ✅ Owned
-        </span>
-      )}
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          {figure.name}
-        </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-          {figure.description}
-        </p>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            showDetails(figure);
-          }}
-          className="mt-2 text-blue-500 hover:underline text-sm"
+        <h2 className="text-lg font-semibold">{figure.name}</h2>
+        <p className="text-sm text-gray-600 dark:text-gray-300">Codename: {figure.codename}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-300">Specialty: {figure.specialty}</p>
+
+        <button 
+          onClick={(e) => { e.stopPropagation(); toggleOwned(figure.id); }}
+          className={`mt-2 px-3 py-1 rounded-lg text-sm font-medium 
+            ${owned ? "bg-green-600 text-white" : "bg-gray-300 text-black"}`}
         >
-          More Info
+          {owned ? "Owned" : "Add to Collection"}
         </button>
       </div>
     </div>

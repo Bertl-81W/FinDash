@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "name": "Snake Eyes",
+    "codename": "Commando",
+    "specialty": "Ninja/Commando",
+    "image": "/images/snake-eyes.png"
+  },
+  {
+    "id": 2,
+    "name": "Duke",
+    "codename": "First Sergeant",
+    "specialty": "Leadership",
+    "image": "/images/duke.png"
+  },
+  {
+    "id": 3,
+    "name": "Scarlett",
+    "codename": "Counter Intelligence",
+    "specialty": "Martial Arts",
+    "image": "/images/scarlett.png"
+  }
+]
+
+
