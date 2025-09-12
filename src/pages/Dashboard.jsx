@@ -1,10 +1,9 @@
 import React from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import { auth, db } from "../firebase/firebaseConfig";
 import FigureGrid from "../components/FigureGrid";
 import { useAuth } from "../context/AuthContext";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase/firebaseConfig";
 import data from "../data/figures.json"; 
 
 export default function Dashboard() {
@@ -36,35 +35,35 @@ export default function Dashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-camoTan text-jetBlack dark:bg-jetBlack dark:text-camoTan">
-        <p className="text-lg animate-pulse font-stencil">Loading your collection...</p>
+      <div className="min-h-screen flex items-center justify-center bg-camoTan text-jetBlack font-stencil">
+        <p className="text-lg animate-pulse">Loading your collection...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-camoTan text-jetBlack dark:bg-jetBlack dark:text-camoTan font-stencil">
+    <div className="min-h-screen bg-camoTan text-jetBlack font-stencil">
       {/* Navbar */}
-      <header className="flex justify-between items-center px-6 py-4 bg-jetBlack text-joeBlue shadow-md">
-        <h1 className="text-3xl font-bold">GI Joe Collector Tracker</h1>
+      <header className="flex justify-between items-center px-6 py-4 bg-armyGreen text-white shadow-md">
+        <h1 className="text-2xl font-bold">GI Joe Collector Tracker</h1>
         <div className="flex items-center gap-4">
           <span className="hidden sm:block">
             Welcome, {user.displayName || user.email}
           </span>
           <button
             onClick={handleLogout}
-            className="px-4 py-2 bg-joeRed hover:bg-oliveDrab rounded-lg text-white font-semibold transition-colors"
+            className="px-4 py-2 bg-joeRed hover:bg-joeBlue rounded-lg text-sm font-medium transition"
           >
             Log Out
           </button>
         </div>
       </header>
 
-      {/* Seed Figures Button */}
-      <div className="p-6 flex justify-start">
+      {/* Temporary Seed Button */}
+      <div className="p-6">
         <button
           onClick={seedFigures}
-          className="px-4 py-2 bg-joeBlue hover:bg-armyGreen rounded-lg text-white font-semibold transition-colors"
+          className="px-4 py-2 bg-joeBlue hover:bg-joeRed text-camoTan rounded-lg shadow-md transition"
         >
           Seed Figures into Firestore
         </button>

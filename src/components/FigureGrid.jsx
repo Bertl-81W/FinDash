@@ -1,56 +1,25 @@
-import { useState, useEffect } from "react";
-import FigureCard from "../components/FigureCard";
-import Modal from "./Modal";
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "../firebase/firebaseConfig";
+// src/components/FigureGrid.jsx
+import React from "react";
 
 export default function FigureGrid({ user }) {
-  const [owned, setOwned] = useState([]);
-  const [figures, setFigures] = useState([]);
-  const [selected, setSelected] = useState(null);
-
-  // Load figures from Firestore
-  useEffect(() => {
-    const q = query(collection(db, "figures"), where("uid", "==", user.uid));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const items = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setFigures(items);
-      setOwned(items.filter((f) => f.owned).map((f) => f.id));
-    });
-    return unsubscribe;
-  }, [user.uid]);
-
-  // Toggle owned in Firestore
-  const toggleOwned = async (figureId) => {
-    const figRef = doc(db, "figures", figureId);
-    const currentlyOwned = owned.includes(figureId);
-    await updateDoc(figRef, { owned: !currentlyOwned });
-  };
+  
+  const sampleFigures = [
+    { id: 1, name: "Snake Eyes", specialty: "Commando" },
+    { id: 2, name: "Duke", specialty: "Leadership" },
+    { id: 3, name: "Scarlett", specialty: "Martial Arts" },
+  ];
 
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
-        {figures.map((figure) => (
-          <FigureCard
-            key={figure.id}
-            figure={figure}
-            owned={figure.owned}
-            toggleOwned={() => toggleOwned(figure.id)}
-            showDetails={setSelected}
-          />
-        ))}
-      </div>
-
-      {selected && (
-        <Modal figure={selected} onClose={() => setSelected(null)} />
-      )}
-    </>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {sampleFigures.map((fig) => (
+        <div
+          key={fig.id}
+          className="bg-joeBlue text-camoTan p-6 rounded-lg shadow-md hover:bg-joeRed transition font-stencil"
+        >
+          <h2 className="text-xl font-bold">{fig.name}</h2>
+          <p className="mt-2">{fig.specialty}</p>
+        </div>
+      ))}
+    </div>
   );
 }
