@@ -1,11 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+// src/context/AuthContext.jsx
+import { createContext, useContext, useState, useEffect } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig"; 
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); 
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,14 +18,15 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  const logout = () => signOut(auth);
+
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, logout }}>
       {!loading && children}
     </AuthContext.Provider>
   );
-};
+}
 
-// Custom hook so I can udse AuthContext
-export const useAuth = () => useContext(AuthContext);
-
-export default AuthProvider;
+export function useAuth() {
+  return useContext(AuthContext);
+}
